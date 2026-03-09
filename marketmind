@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+class Stock {
+    String name;
+    double price;
+
+    Stock(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    void displayStock() {
+        System.out.println("Stock: " + name + " | Price: $" + price);
+    }
+}
+
+class Trading {
+    double balance = 10000;
+
+    void buyStock(Stock stock, int quantity) {
+        double cost = stock.price * quantity;
+
+        if (cost <= balance) {
+            balance -= cost;
+            System.out.println("Bought " + quantity + " shares of " + stock.name);
+        } else {
+            System.out.println("Insufficient balance!");
+        }
+    }
+
+    void sellStock(Stock stock, int quantity) {
+        double profit = stock.price * quantity;
+        balance += profit;
+        System.out.println("Sold " + quantity + " shares of " + stock.name);
+    }
+
+    void showBalance() {
+        System.out.println("Current Balance: $" + balance);
+    }
+}
+
+public class MarketMind {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Stock s1 = new Stock("Apple", 150);
+        Stock s2 = new Stock("Tesla", 250);
+        Stock s3 = new Stock("Amazon", 180);
+
+        Trading trader = new Trading();
+
+        int choice;
+
+        do {
+            System.out.println("\n===== MarketMind
